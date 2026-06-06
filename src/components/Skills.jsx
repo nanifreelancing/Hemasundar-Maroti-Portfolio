@@ -1,156 +1,149 @@
 import React from 'react'
-import { Code, Server, Database, Wrench, Star } from 'lucide-react'
-import ScrollAnimations from './ScrollAnimations'
+
+// Custom SVG Icons representing official brand designs:
+const LovableIcon = () => (
+  <svg viewBox="0 0 24 24" className="h-10 w-10 mb-2" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#FF4B6E" fillRule="evenodd" clipRule="evenodd" d="M7.082 0c3.91 0 7.081 3.179 7.081 7.1v2.7h2.357c3.91 0 7.082 3.178 7.082 7.1 0 3.923-3.17 7.1-7.082 7.1H0V7.1C0 3.18 3.17 0 7.082 0z" />
+  </svg>
+)
+
+const CursorIcon = () => (
+  <svg viewBox="0 0 24 24" className="h-10 w-10 mb-2" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill="url(#cursor-grad)" d="M22.106 5.68L12.5.135a.998.998 0 00-.998 0L1.893 5.68a.84.84 0 00-.419.726v11.186c0 .3.16.577.42.727l9.607 5.547a.999.999 0 00.998 0l9.608-5.547a.84.84 0 00.42-.727V6.407a.84.84 0 00-.42-.726zm-.603 1.176L12.228 22.92c-.063.108-.228.064-.228-.061V12.34a.59.59 0 00-.295-.51l-9.11-5.26c-.107-.062-.063-.228.062-.228h18.55c.264 0 .428.286.296.514z" />
+    <defs>
+      <linearGradient id="cursor-grad" x1="1.8" y1="0.1" x2="22.1" y2="22.9" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#38bdf8" />
+        <stop offset="100%" stopColor="#00e5ff" />
+      </linearGradient>
+    </defs>
+  </svg>
+)
+
+const AntigravityIcon = () => (
+  <svg viewBox="0 0 24 24" className="h-10 w-10 mb-2" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="24" height="24" rx="5" fill="#0c111d" stroke="#ef4444" strokeWidth="1" />
+    <path d="M6 18c3-3 4-8 8-10s6 1 6 4-2 6-6 6-6-6-3-9" stroke="url(#antigravity-curve-grad)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+    <defs>
+      <linearGradient id="antigravity-curve-grad" x1="6" y1="18" x2="20" y2="8" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#00f2fe" />
+        <stop offset="100%" stopColor="#4facfe" />
+      </linearGradient>
+    </defs>
+  </svg>
+)
+
+const MultisimIcon = () => (
+  <svg viewBox="0 0 24 24" className="h-10 w-10 mb-2" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="24" height="24" rx="5" fill="#1e40af" />
+    <path d="M5 12h5m0-4v8l6-4-6-4zm6 4h4" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="5" cy="12" r="1" fill="#ffffff" />
+    <circle cx="19" cy="12" r="1" fill="#ffffff" />
+  </svg>
+)
+
+const CompassIcon = () => (
+  <svg viewBox="0 0 24 24" className="h-10 w-10 mb-2" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="10" stroke="#10b981" strokeWidth="1.5" />
+    <circle cx="12" cy="12" r="7.5" stroke="#374151" strokeWidth="1" strokeDasharray="1.5 1.5" />
+    <path d="M12 2v2M12 20v2M2 12h2M20 12h2" stroke="#10b981" strokeWidth="1" />
+    <path d="M12 5.5c0 0-2.5 3-2.5 6.5s2.5 6.5 2.5 6.5 2.5-3 2.5-6.5S12 5.5 12 5.5z" fill="#10b981" />
+    <path d="M12 5.5c0 0-1.25 3-1.25 6.5s1.25 6.5 1.25 6.5V5.5z" fill="#059669" />
+  </svg>
+)
+
+const RailwayIcon = () => (
+  <svg viewBox="0 0 24 24" className="h-10 w-10 mb-2" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="10" fill="#090d16" stroke="#475569" strokeWidth="1" />
+    <path d="M7 10h10M7 14h10" stroke="#f97316" strokeWidth="2" strokeLinecap="round" />
+    <path d="M9 10v4M12 10v4M15 10v4" stroke="#ffffff" strokeWidth="1.5" />
+  </svg>
+)
+
+const techSkills = [
+  { name: "React Native", icon: "https://cdn.simpleicons.org/react/61DAFB" },
+  { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+  { name: "SQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+  { name: "HTML5", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+  { name: "CSS3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+  { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+  { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+  { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+  { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+  { name: "TailwindCSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+  { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" }
+]
+
+const toolsSkills = [
+  { name: "Expo", icon: "https://cdn.simpleicons.org/expo/ffffff" },
+  { name: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
+  { name: "VS Code", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
+  { name: "Jupyter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" },
+  { name: "Hugging Face", icon: "https://cdn.simpleicons.org/huggingface/FFD21E" },
+  { name: "Lovable", icon: LovableIcon },
+  { name: "Cursor", icon: CursorIcon },
+  { name: "Antigravity", icon: AntigravityIcon },
+  { name: "Multisim 11.0", icon: MultisimIcon },
+  { name: "Arduino IDE", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" },
+  { name: "MongoDB Compass", icon: CompassIcon },
+  { name: "Netlify", icon: "https://cdn.simpleicons.org/netlify/00C7B7" },
+  { name: "Vercel", icon: "https://cdn.simpleicons.org/vercel/ffffff" },
+  { name: "Railway Deploy", icon: RailwayIcon },
+  { name: "Render", icon: "https://cdn.simpleicons.org/render/46E3B7" }
+]
+
+const renderIcon = (Icon) => {
+  if (typeof Icon === 'string') {
+    return <img src={Icon} alt="" className="h-10 w-10 mb-2 object-contain" />
+  }
+  const IconComponent = Icon;
+  return <IconComponent />
+}
 
 const Skills = () => {
-  const skillCategories = [
-    {
-      title: "Frontend Development",
-      icon: <Code className="h-6 w-6" />,
-      skills: [
-        { name: "React.js", level: 85, color: "bg-blue-500" },
-        { name: "HTML", level: 90, color: "bg-orange-500" },
-        { name: "CSS", level: 85, color: "bg-blue-600" },
-        { name: "JavaScript", level: 80, color: "bg-yellow-500" },
-        { name: "Tailwind CSS", level: 75, color: "bg-cyan-500" }
-      ]
-    },
-    {
-      title: "Backend Development",
-      icon: <Server className="h-6 w-6" />,
-      skills: [
-        { name: "Node.js", level: 70, color: "bg-green-500" },
-        { name: "Express.js", level: 65, color: "bg-gray-600" }
-      ]
-    },
-    {
-      title: "Database",
-      icon: <Database className="h-6 w-6" />,
-      skills: [
-        { name: "MongoDB", level: 70, color: "bg-green-600" }
-      ]
-    },
-    {
-      title: "Tools & Others",
-      icon: <Wrench className="h-6 w-6" />,
-      skills: [
-        { name: "GitHub", level: 80, color: "bg-gray-800" },
-        { name: "AI Tools", level: 75, color: "bg-purple-500" }
-      ]
-    }
-  ]
-
-  const interests = [
-    {
-      title: "Freelancing",
-      description: "Web development with React focus",
-      icon: "💼"
-    },
-    {
-      title: "Startup Ideas",
-      description: "AI, IVR systems, and agriculture support",
-      icon: "🚀"
-    },
-    {
-      title: "Analytics Systems",
-      description: "Custom analytics for websites",
-      icon: "📊"
-    }
-  ]
-
   return (
-    <section id="skills" className="py-16 bg-dark-900">
-      <div className="section-padding">
-        <div className="container-max">
-          <ScrollAnimations className="text-center mb-12" delay={0}>
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-              Skills & <span className="gradient-text">Expertise</span>
-            </h2>
-            <p className="text-lg text-dark-300 max-w-2xl mx-auto">
-              A comprehensive overview of my technical skills and areas of interest
-            </p>
-          </ScrollAnimations>
+    <section id="skills" className="py-20 px-6 bg-[#030712] relative z-10 grid-bg">
+      <div className="max-w-5xl mx-auto">
+        
+        {/* Header Title */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold font-space-grotesk gradient-text mb-4">Skills &amp; Tools</h2>
+          <p className="text-xl text-gray-400 font-dm-sans">Technologies I work with</p>
+        </div>
 
-          {/* Skills Grid */}
-          <div className="grid lg:grid-cols-2 gap-8 mb-16">
-            {skillCategories.map((category, categoryIndex) => (
-              <ScrollAnimations key={categoryIndex} delay={categoryIndex * 200}>
-                <div className="bg-dark-800 rounded-lg shadow-lg p-6 card-hover border border-dark-700">
-                  <div className="flex items-center mb-6">
-                    <div className="p-2 bg-primary-900 rounded-lg mr-3 floating">
-                      {category.icon}
-                    </div>
-                    <h3 className="text-xl font-bold text-white">{category.title}</h3>
-                  </div>
-                
-                <div className="space-y-4">
-                  {category.skills.map((skill, skillIndex) => (
-                    <div key={skillIndex}>
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="font-medium text-white">{skill.name}</span>
-                        <span className="text-sm text-dark-400">{skill.level}%</span>
-                      </div>
-                      <div className="w-full bg-dark-600 rounded-full h-2">
-                        <div 
-                          className={`h-2 rounded-full transition-all duration-1000 ease-out ${skill.color}`}
-                          style={{ width: `${skill.level}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                </div>
-              </ScrollAnimations>
-            ))}
-          </div>
-
-          {/* Interests Section */}
-          <ScrollAnimations className="bg-dark-800 rounded-lg shadow-lg p-8 border border-dark-700" delay={400}>
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-white mb-2">
-                Areas of <span className="gradient-text">Interest</span>
-              </h3>
-              <p className="text-dark-300">
-                What drives my passion and keeps me motivated in the tech world
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {interests.map((interest, index) => (
-                <div key={index} className="text-center p-6 bg-gradient-to-br from-primary-900 to-primary-800 rounded-lg card-hover floating border border-primary-700">
-                  <div className="text-4xl mb-4">{interest.icon}</div>
-                  <h4 className="font-semibold text-white mb-2">{interest.title}</h4>
-                  <p className="text-sm text-dark-300">{interest.description}</p>
+        <div className="space-y-16">
+          
+          {/* Technical Skills Category */}
+          <div>
+            <h3 className="text-2xl font-bold font-space-grotesk mb-8 text-center text-white">Technical Skills</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 max-w-4xl mx-auto">
+              {techSkills.map((skill, index) => (
+                <div 
+                  key={index}
+                  className="flex flex-col items-center justify-center p-4 rounded-lg shadow-md border border-red-500/10 bg-slate-950/40 hover:border-red-500/30 hover:scale-105 transition-all duration-300"
+                >
+                  {renderIcon(skill.icon)}
+                  <p className="text-sm font-medium text-gray-300 font-dm-sans">{skill.name}</p>
                 </div>
               ))}
             </div>
-          </ScrollAnimations>
+          </div>
 
-          {/* Learning Journey */}
-          <ScrollAnimations className="mt-16 bg-gradient-to-r from-primary-500 to-primary-600 rounded-lg p-8 text-white" delay={600}>
-            <div className="text-center">
-              <h3 className="text-2xl font-bold mb-4">Continuous Learning Journey</h3>
-              <p className="text-primary-100 mb-6 max-w-2xl mx-auto">
-                As a 2nd-year B.Tech student, I'm constantly expanding my knowledge and skills. 
-                My focus areas include mastering React ecosystem, exploring AI integration, 
-                and building real-world applications that solve meaningful problems.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <div className="flex items-center bg-white/20 px-4 py-2 rounded-full floating">
-                  <Star className="h-4 w-4 mr-2" />
-                  <span className="text-sm">React Specialist</span>
+          {/* Tools & Platforms Category */}
+          <div>
+            <h3 className="text-2xl font-bold font-space-grotesk mb-8 text-center text-white">Tools &amp; Platforms</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 max-w-5xl mx-auto">
+              {toolsSkills.map((tool, index) => (
+                <div 
+                  key={index}
+                  className="flex flex-col items-center justify-center p-4 rounded-lg shadow-md border border-red-500/10 bg-slate-950/40 hover:border-red-500/30 hover:scale-105 transition-all duration-300"
+                >
+                  {renderIcon(tool.icon)}
+                  <p className="text-sm font-medium text-gray-300 font-dm-sans text-center">{tool.name}</p>
                 </div>
-                <div className="flex items-center bg-white/20 px-4 py-2 rounded-full floating-delayed">
-                  <Star className="h-4 w-4 mr-2" />
-                  <span className="text-sm">AI Enthusiast</span>
-                </div>
-                <div className="flex items-center bg-white/20 px-4 py-2 rounded-full floating">
-                  <Star className="h-4 w-4 mr-2" />
-                  <span className="text-sm">Problem Solver</span>
-                </div>
-              </div>
+              ))}
             </div>
-          </ScrollAnimations>
+          </div>
+
         </div>
       </div>
     </section>

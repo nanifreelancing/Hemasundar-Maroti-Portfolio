@@ -1,216 +1,126 @@
 import React from 'react'
-import { ExternalLink, Github, Code, Database, Smartphone, Globe, Users, Zap, Cpu } from 'lucide-react'
-import ScrollAnimations from './ScrollAnimations'
+import { ExternalLink, Github, Award } from 'lucide-react'
+
+const projects = [
+  {
+    title: "AIoT Vertical Farming (Agrinex)",
+    description: "A smart farming prototype built using microcontrollers and IoT web dashboards, integrating ambient sensors for automated agriculture irrigation feedback.",
+    image: "https://www.shutterstock.com/image-photo/artificial-intelligence-imagine-how-works-600nw-2508362681.jpg",
+    techStack: ["React.js", "Node.js", "Express.js", "MongoDB", "IoT Sensors", "Microcontrollers"],
+    link: "https://agrinex.vercel.app/"
+  },
+  {
+    title: "Telugu Info Student Portal",
+    description: "Designed a jobs database and scholarship notification utility matching regional requirements for Telugu student users.",
+    image: "https://itechindia.co/wp-content/uploads/2025/08/business-handshake-finance-prosperity-money-technology-asset-background-11.png",
+    techStack: ["React.js", "Node.js", "Express.js", "MongoDB", "SMTP Services"],
+    link: "https://telugu-info-student.vercel.app/"
+  },
+  {
+    title: "Prani Mitra Website",
+    description: "Farmer assistance platform integrating AI-powered query engines and Interactive Voice Response (IVR) architectures.",
+    image: "https://www.keyamedical.com/wp-content/uploads/2021/06/SmartHospital.png",
+    techStack: ["React.js", "Node.js", "Express.js", "MongoDB", "IVR Voice APIs", "AI Models"],
+    link: "https://prani-mitra1.vercel.app/"
+  }
+]
 
 const Projects = () => {
-  const projects = [
-    {
-      title: "Telugu Info Website",
-      description: "A comprehensive web platform that provides educational and informational content in Telugu with a separate frontend & backend architecture.",
-      image: "/api/placeholder/600/400",
-      features: [
-       "PDF → Direct access to attached study materials and resources",
-       "Comprehensive Job Details → Supports fields for Job Title, Company, Location, Dates, Salary, Job Type, Work Mode, Application Link, YouTube Link, and PDF attachments.",
-       "Search & Filter Options → Users can easily find jobs based on location, job type, or company.",
-       "Automatic Email Notifications → Whenever a new job post is created, all registered users receive an email alert.",
-       "Responsive Design → Optimized for both desktop and mobile devices"
-      ],
-      techStack: ["React.js", "Node.js", "Express", "MongoDB"],
-      category: "Full Stack",
-      status: "Completed",
-      link: "https://telugu-info.vercel.app/"
-    },
-    {
-      title: "Prani Mitra Website",
-      description: "A farmer-friendly platform that connects farmers with real-time information and AI-driven support through IVR and modern web technologies.",
-      image: "/api/placeholder/600/400",
-      features: [
-        "IVR-based system for farmers to call toll-free number and interact in Telugu",
-        "AI-powered Q&A on farming queries (voice + text support)",
-        "SMS integration for updates and alerts",
-        "User-friendly UI with multi-language support"
-      ],
-      techStack: ["React.js", "Node.js", "Express", "MongoDB", "AI/IVR APIs"],
-      category: "AI/IVR Integration",
-      status: "Prototype Building Stage",
-      link: "https://prani-mitra1.vercel.app/"
-    },
-    {
-      title: "Indoor Air Quality Monitoring System",
-      description: "An IoT-based project developed using ESP32 microcontroller to ensure a safe and healthy indoor environment by continuously monitoring temperature, humidity, air pressure, and gas levels.",
-      image: "/api/placeholder/600/400",
-      features: [
-        "Real-time monitoring of temperature, humidity, air pressure, and gas levels",
-        "16x2 I2C LCD display for data visualization and warnings",
-        "Automatic fan activation when dangerous gas levels are detected",
-        "Wi-Fi capability for future IoT platform integration",
-        "Sensor integration: DHT22, BMP280, and MQ-2"
-      ],
-      techStack: ["ESP32", "DHT22", "BMP280", "MQ-2", "LCD", "Arduino IDE", "C/C++"],
-      category: "IoT/Embedded",
-      status: "Completed",
-      link: "#"
-    }
-  ]
-
-  const getCategoryIcon = (category) => {
-    switch (category) {
-      case "Full Stack":
-        return <Code className="h-5 w-5" />
-      case "AI/IVR Integration":
-        return <Smartphone className="h-5 w-5" />
-      case "IoT/Embedded":
-        return <Cpu className="h-5 w-5" />
-      default:
-        return <Globe className="h-5 w-5" />
-    }
-  }
-
   return (
-    <section id="projects" className="py-16 bg-dark-800">
-      <div className="section-padding">
-        <div className="container-max">
-          <ScrollAnimations className="text-center mb-12" delay={0}>
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-              Featured <span className="gradient-text gradient-highlight">Projects</span>
-            </h2>
-            <p className="text-lg text-dark-300 max-w-2xl mx-auto text-highlight">
-              Explore my recent projects that showcase my skills in web development, AI integration, and problem-solving
-            </p>
-          </ScrollAnimations>
+    <section id="projects" className="py-20 px-6 bg-[#0a0f1d]/40 relative z-10 grid-bg">
+      <div className="max-w-5xl mx-auto">
+        
+        {/* Header Title */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold font-space-grotesk gradient-text mb-4">Featured Projects</h2>
+          <p className="text-xl text-gray-400 font-dm-sans">Showcasing my best work and innovations</p>
+        </div>
 
-          <div className="grid lg:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <ScrollAnimations key={index} delay={index * 200}>
-                <div className="bg-dark-700 rounded-lg shadow-lg overflow-hidden card-hover border border-dark-600 gradient-border">
-                {/* Project Image/Logo */}
-                <div className="h-48 bg-gradient-to-br from-primary-900 to-primary-800 flex items-center justify-center">
-                  {project.title === "Telugu Info Website" ? (
-                    <div className="text-center">
-                      <img 
-                        src="/teluguinfo-logo.png" 
-                        alt="Telugu Info Logo " 
-                        className="w-24 h-24 mx-auto mb-3 floating object-contain"
-                      />
-                      <p className="text-sm text-primary-300 font-medium glow-text">{project.category}</p>
-                    </div>
-                  ) : project.title === "Prani Mitra Website" ? (
-                    <div className="text-center">
-                      <img 
-                        src="/PraniMitra_logo1.png" 
-                        alt="Prani Mitra Logo" 
-                        className="w-24 h-24 mx-auto mb-3 floating object-contain"
-                      />
-                      <p className="text-sm text-primary-300 font-medium glow-text">{project.category}</p>
-                    </div>
-                  ) : (
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-primary-500 rounded-full flex items-center justify-center mx-auto mb-3 floating">
-                        {getCategoryIcon(project.category)}
-                      </div>
-                      <p className="text-sm text-primary-300 font-medium glow-text">{project.category}</p>
-                    </div>
-                  )}
+        {/* Grid Layout */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {projects.map((project, index) => (
+            <div 
+              key={index}
+              className="glassmorphism flex flex-col justify-between border border-red-500/10 hover:border-red-500/30 transition-all duration-300 group h-full rounded-xl"
+            >
+              <div className="p-0">
+                {/* Image Banner */}
+                <div className="relative overflow-hidden rounded-t-lg h-44 bg-slate-900 flex items-center justify-center">
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
 
+                {/* Details */}
                 <div className="p-6">
-                  {/* Project Header */}
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-2 project-title-highlight">{project.title}</h3>
-                      <div className="flex items-center space-x-2">
-                        <span className="bg-green-900 text-green-300 text-xs font-medium px-2.5 py-0.5 rounded-full glow-text">
-                          {project.status}
-                        </span>
-                        <span className="bg-primary-900 text-primary-300 text-xs font-medium px-2.5 py-0.5 rounded-full glow-text">
-                          {project.category}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Project Description */}
-                  <p className="text-dark-300 mb-4 leading-relaxed text-highlight">
+                  <h3 className="text-xl font-bold font-space-grotesk text-white mb-2 group-hover:text-red-400 transition-colors">
+                    {project.title}
+                  </h3>
+                  
+                  <p className="text-sm text-gray-405 font-dm-sans leading-relaxed mb-4 line-clamp-3">
                     {project.description}
                   </p>
 
-                  {/* Features */}
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-white mb-2 flex items-center text-highlight">
-                      <Zap className="h-4 w-4 mr-2 text-primary-400" />
-                      Key Features
-                    </h4>
-                    <ul className="space-y-1">
-                      {project.features.slice(0, 3).map((feature, idx) => (
-                        <li key={idx} className="flex items-start text-sm text-dark-300 feature-highlight">
-                          <span className="w-1.5 h-1.5 bg-primary-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                          {feature}
-                        </li>
-                      ))}
-                      {project.features.length > 3 && (
-                        <li className="text-sm text-primary-400 font-medium glow-text">
-                          +{project.features.length - 3} more features
-                        </li>
-                      )}
-                    </ul>
-                  </div>
-
-                  {/* Tech Stack */}
-                  <div className="mb-6">
-                    <h4 className="font-semibold text-white mb-2 flex items-center text-highlight">
-                      <Database className="h-4 w-4 mr-2 text-primary-400" />
-                      Tech Stack
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {project.techStack.map((tech, idx) => (
-                        <span key={idx} className="bg-dark-600 text-dark-200 text-xs font-medium px-2.5 py-1 rounded-full tech-highlight">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex space-x-3">
-                    <a 
-                      href={project.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex-1 bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center wiggle"
-                    >
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      View Project
-                    </a>
-                    <button className="px-4 py-2 border border-dark-500 hover:border-primary-500 hover:text-primary-400 text-dark-300 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center glow-text">
-                      <Github className="h-4 w-4" />
-                    </button>
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {project.techStack.map((tech, ti) => (
+                      <span 
+                        key={ti} 
+                        className="px-2 py-0.5 bg-red-950/20 text-red-400 text-xs rounded-full font-mono border border-red-500/10"
+                      >
+                        {tech}
+                      </span>
+                    ))}
                   </div>
                 </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="p-6 pt-0 mt-auto">
+                <div className="flex gap-3">
+                  <a 
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-solid text-xs py-2 px-3 flex-1 flex items-center justify-center gap-1 font-dm-sans"
+                  >
+                    Live Demo <ExternalLink size={13} />
+                  </a>
+                  <a 
+                    href="https://github.com/Hemasundar2006"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-outline text-xs py-2 px-3 flex-1 flex items-center justify-center gap-1 font-dm-sans"
+                  >
+                    GitHub <Github size={13} />
+                  </a>
                 </div>
-              </ScrollAnimations>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Expo Awards Box */}
+        <div className="mt-16 p-8 glassmorphism border border-red-500/15 hover:border-red-500/35 transition-all flex flex-col md:flex-row items-center justify-between gap-6 rounded-xl">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-lg bg-red-950/20 border border-red-500/20 flex items-center justify-center flex-shrink-0">
+              <Award className="h-6 w-6 text-red-400" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-white font-space-grotesk">Project Expo Achievements</h3>
+              <p className="text-sm text-gray-400 mt-0.5 font-dm-sans">5 state-wide project exhibition prizes won at regional colleges.</p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2 justify-center">
+            {['Chalapathy Guntur (1st)', 'RISE Ongole (1st)', 'SITE Tadepalligudem (1st)', 'LAAM Guntur (1st)', 'QISCET (3rd)'].map((award, ai) => (
+              <span key={ai} className="text-xs font-mono font-semibold bg-red-950/25 border border-red-500/25 text-red-400 px-3 py-1.5 rounded-full">
+                {award}
+              </span>
             ))}
           </div>
-
-          {/* Project Stats */}
-          <ScrollAnimations className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6" delay={400}>
-            <div className="text-center p-6 bg-gradient-to-br from-primary-900 to-primary-800 rounded-lg floating border border-primary-700">
-              <div className="text-3xl font-bold text-primary-400 mb-2 bounce-text">3</div>
-              <div className="text-sm text-dark-300 glow-text">Projects Completed</div>
-            </div>
-            <div className="text-center p-6 bg-gradient-to-br from-primary-900 to-primary-800 rounded-lg floating-delayed border border-primary-700">
-              <div className="text-3xl font-bold text-primary-400 mb-2 bounce-text">6+</div>
-              <div className="text-sm text-dark-300 glow-text">Months Experience</div>
-            </div>
-            <div className="text-center p-6 bg-gradient-to-br from-primary-900 to-primary-800 rounded-lg floating border border-primary-700">
-              <div className="text-3xl font-bold text-primary-400 mb-2 bounce-text">3</div>
-              <div className="text-sm text-dark-300 glow-text">Languages</div>
-            </div>
-            <div className="text-center p-6 bg-gradient-to-br from-primary-900 to-primary-800 rounded-lg floating-delayed border border-primary-700">
-              <div className="text-3xl font-bold text-primary-400 mb-2 bounce-text">Top 3</div>
-              <div className="text-sm text-dark-300 glow-text">Competition Rank</div>
-            </div>
-          </ScrollAnimations>
         </div>
+
       </div>
     </section>
   )

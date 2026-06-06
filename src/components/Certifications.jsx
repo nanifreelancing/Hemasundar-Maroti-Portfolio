@@ -1,108 +1,79 @@
 import React from 'react'
-import { Award, ExternalLink, Calendar } from 'lucide-react'
-import ScrollAnimations from './ScrollAnimations'
+import { Award, Calendar } from 'lucide-react'
+
+const certificationsList = [
+  {
+    title: 'Python Full Stack Internship Certificate',
+    issuer: 'EduSkills Academy',
+    date: 'June 2026',
+    description: 'Completed a structured 8-week internship program covering HTML, CSS, JavaScript, jQuery, Python programming, Django web framework, SQL databases, and Git version control. Certificate ID: 2026-07SD48E776.'
+  },
+  {
+    title: 'TATA Crucible Campus Quiz Participation',
+    issuer: 'TATA Crucible',
+    date: '2025',
+    description: 'Participated in the prestigious campus tech, business, and general analytics quiz.'
+  },
+  {
+    title: 'Certified in Frontend Development',
+    issuer: 'United Latino Students Association',
+    date: '2024',
+    description: 'Validates full responsive coding structures, CSS grid capabilities, and dynamic browser logic.'
+  },
+  {
+    title: 'CSS (Basic) Certificate',
+    issuer: 'HackerRank',
+    date: '2024',
+    description: 'Verified certification in fundamental web styling elements, selections, layouts, and animations.'
+  },
+  {
+    title: '2-Day SEO Training Program',
+    issuer: 'Trybinc',
+    date: 'March 2025',
+    description: 'Practical training on search indexing, search engine optimizations, metadata systems, and site speed structures.'
+  },
+  {
+    title: 'Performance Marketing Masterclass',
+    issuer: 'WsCube Tech',
+    date: '2025',
+    description: 'Acquired core competencies in audience targeting analytics, Google Ads, and campaign monitoring.'
+  }
+]
 
 const Certifications = () => {
-  const certifications = [
-    {
-      title: 'React Developer Certification',
-      issuer: 'Spotmies',
-      date: 'Nov 2024 - May 2025',
-      link: null,
-      description: 'Recognized for contributions in React-based projects and UI improvements.'
-    },
-    {
-      title: 'Performance Marketing Masterclass',
-      issuer: 'WsCube Tech',
-      date: '2025',
-      link: null,
-      description: 'Attended an intensive masterclass covering modern performance marketing strategies.'
-    },
-    {
-      title: 'Certificate of Participation in SEO Training',
-      program: '2-Day SEO Training Program',
-      recipient: 'Hema Sundar Maroti',
-      issuer: 'Trybinc',
-      date: 'March 23 & 24, 2025',
-      location: 'Visakhapatnam',
-      certificateNumber: 'TRYBINC/COP/066',
-      link: null,
-      description:
-        'This certificate acknowledges successful participation and completion of the program, which provided practical knowledge and skills in Search Engine Optimization (SEO).'
-    }
-  ]
-
   return (
-    <section id="certifications" className="py-16 bg-dark-800">
-      <div className="section-padding">
-        <div className="container-max">
-          <ScrollAnimations className="text-center mb-12" delay={0}>
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-              Professional <span className="gradient-text">Certifications</span>
-            </h2>
-            <p className="text-lg text-dark-300 max-w-2xl mx-auto">
-              A selection of certifications and workshops highlighting my continual learning
-            </p>
-          </ScrollAnimations>
+    <section id="certifications" className="py-20 px-6 bg-[#0a0f1d]/40 relative z-10 grid-bg">
+      <div className="max-w-5xl mx-auto">
+        
+        {/* Title */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold font-space-grotesk gradient-text mb-4">Certifications</h2>
+          <p className="text-xl text-gray-400 font-dm-sans">Licensing & Credentials</p>
+        </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {certifications.map((cert, idx) => {
-              const isCenterSecondRow = cert.title === 'Certificate of Participation in SEO Training'
-              return (
-              <ScrollAnimations key={idx} delay={idx * 150} className={isCenterSecondRow ? 'md:col-span-2 md:max-w-xl md:mx-auto' : ''}>
-                <div className="bg-dark-700 p-6 rounded-lg border border-dark-600 card-hover floating">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex items-center">
-                      <div className="p-2 bg-primary-900 rounded-lg mr-3">
-                        <Award className="h-6 w-6 text-primary-400" />
-                      </div>
-                      <div>
-                        <h3 className="text-white font-semibold leading-tight">{cert.title}</h3>
-                        <p className="text-sm text-dark-300">{cert.issuer}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center text-sm text-dark-300">
-                      <Calendar className="h-4 w-4 mr-2" />
-                      {cert.date}
-                    </div>
+        {/* Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {certificationsList.map((cert, idx) => (
+            <div 
+              key={idx}
+              className="glassmorphism p-6 hover:border-red-500/30 transition-all duration-300 flex flex-col justify-between rounded-xl"
+            >
+              <div>
+                <div className="flex justify-between items-start mb-4">
+                  <div className="p-2.5 rounded-lg bg-red-950/20 border border-red-500/20 flex items-center justify-center">
+                    <Award className="h-5 w-5 text-red-400" />
                   </div>
-                  {cert.program && (
-                    <p className="text-dark-300 text-sm mb-2">
-                      <span className="text-white/90">Program:</span> {cert.program}
-                    </p>
-                  )}
-                  {cert.recipient && (
-                    <p className="text-dark-300 text-sm mb-2">
-                      <span className="text-white/90">Recipient:</span> {cert.recipient}
-                    </p>
-                  )}
-                  {cert.location && (
-                    <p className="text-dark-300 text-sm mb-2">
-                      <span className="text-white/90">Location:</span> {cert.location}
-                    </p>
-                  )}
-                  {cert.certificateNumber && (
-                    <p className="text-dark-300 text-sm mb-2">
-                      <span className="text-white/90">Certificate No:</span> {cert.certificateNumber}
-                    </p>
-                  )}
-                  {cert.description && (
-                    <p className="text-dark-300 text-sm mb-4 leading-relaxed">{cert.description}</p>
-                  )}
-                  {cert.link && (
-                    <a
-                      href={cert.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center text-primary-400 hover:text-primary-300 text-sm"
-                    >
-                      <ExternalLink className="h-4 w-4 mr-1" /> View certificate
-                    </a>
-                  )}
+                  <span className="text-xs font-mono text-gray-400 flex items-center gap-1.5 mt-1">
+                    <Calendar size={12} className="text-red-400" /> {cert.date}
+                  </span>
                 </div>
-              </ScrollAnimations>
-            )})}
-          </div>
+
+                <h3 className="text-md font-bold text-white mb-1.5 font-space-grotesk">{cert.title}</h3>
+                <p className="text-xs font-mono text-red-400 mb-3">{cert.issuer}</p>
+                <p className="text-xs text-gray-400 leading-relaxed font-dm-sans">{cert.description}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -110,5 +81,3 @@ const Certifications = () => {
 }
 
 export default Certifications
-
-
