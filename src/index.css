@@ -1,395 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  body {
-    font-family: 'Inter', system-ui, sans-serif;
-    overflow-x: hidden;
-  }
+:root {
+  --primary: #ef4444;    /* Red */
+  --secondary: #f97316;  /* Orange */
+  --background: #030712; /* Deep Black/Grey */
+  --foreground: #f3f4f6; /* Off-white */
+  --muted: #0b0f19;
+  --muted-foreground: #94a3b8;
+  --border: rgba(239, 68, 68, 0.15);
+  --glass: rgba(11, 15, 25, 0.7);
+  --glass-border: rgba(239, 68, 68, 0.18);
 }
 
-@layer components {
-  .section-padding {
-    @apply px-4 sm:px-6 lg:px-8;
-  }
-  
-  .container-max {
-    @apply max-w-7xl mx-auto;
-  }
-  
-  .gradient-text {
-    @apply bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent;
-  }
-  
-  .card-hover {
-    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
-  }
-  
-  .btn-primary {
-    @apply bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200;
-  }
-  
-  .btn-outline {
-    @apply border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white px-6 py-3 rounded-lg font-medium transition-all duration-200;
-  }
-
-  /* Text Highlighting Effects - Radium Green Theme */
-  .text-highlight {
-    @apply relative inline-block transition-all duration-300 cursor-pointer;
-  }
-
-  .text-highlight::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(120deg, rgba(34, 197, 94, 0.1) 0%, rgba(22, 163, 74, 0.2) 50%, rgba(21, 128, 61, 0.1) 100%);
-    border-radius: 4px;
-    opacity: 0;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: all 0.3s ease;
-    z-index: -1;
-  }
-
-  .text-highlight:hover::before {
-    opacity: 1;
-    transform: scaleX(1);
-  }
-
-  .text-highlight:hover {
-    color: #22c55e;
-    transform: scale(1.05);
-    text-shadow: 0 0 8px rgba(34, 197, 94, 0.3);
-  }
-
-  /* Gradient Text Highlight - Radium Green */
-  .gradient-highlight {
-    @apply relative inline-block transition-all duration-300 cursor-pointer;
-    background: linear-gradient(45deg, #ffffff, #e2e8f0, #ffffff);
-    background-size: 200% 200%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .gradient-highlight:hover {
-    background: linear-gradient(45deg, #22c55e, #16a34a, #15803d, #22c55e);
-    background-size: 200% 200%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradientShift 1s ease infinite;
-    transform: scale(1.05);
-  }
-
-  /* Underline Highlight - Radium Green */
-  .underline-highlight {
-    @apply relative inline-block transition-all duration-300 cursor-pointer;
-  }
-
-  .underline-highlight::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #22c55e, #16a34a);
-    transition: width 0.3s ease;
-  }
-
-  .underline-highlight:hover::after {
-    width: 100%;
-  }
-
-  .underline-highlight:hover {
-    color: #22c55e;
-  }
-
-  /* Glow Text Effect - Radium Green */
-  .glow-text {
-    @apply transition-all duration-300 cursor-pointer;
-  }
-
-  .glow-text:hover {
-    color: #22c55e;
-    text-shadow: 
-      0 0 5px rgba(34, 197, 94, 0.5),
-      0 0 10px rgba(34, 197, 94, 0.3),
-      0 0 15px rgba(34, 197, 94, 0.2);
-    transform: scale(1.02);
-  }
-
-  /* Shake Text Effect */
-  .shake-text {
-    @apply transition-all duration-300 cursor-pointer;
-  }
-
-  .shake-text:hover {
-    color: #22c55e;
-    animation: textShake 0.5s ease-in-out;
-  }
-
-  /* Bounce Text Effect */
-  .bounce-text {
-    @apply transition-all duration-300 cursor-pointer;
-  }
-
-  .bounce-text:hover {
-    color: #22c55e;
-    animation: textBounce 0.6s ease;
-  }
-
-  /* Pulse Text Effect */
-  .pulse-text {
-    @apply transition-all duration-300 cursor-pointer;
-  }
-
-  .pulse-text:hover {
-    color: #22c55e;
-    animation: textPulse 1s ease-in-out infinite;
-  }
-
-  /* Project Title Highlight - Radium Green */
-  .project-title-highlight {
-    @apply relative inline-block transition-all duration-300 cursor-pointer;
-  }
-
-  .project-title-highlight::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -4px;
-    right: -4px;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.2));
-    border-radius: 6px;
-    opacity: 0;
-    transform: scaleY(0);
-    transform-origin: bottom;
-    transition: all 0.3s ease;
-    z-index: -1;
-  }
-
-  .project-title-highlight:hover::before {
-    opacity: 1;
-    transform: scaleY(1);
-  }
-
-  .project-title-highlight:hover {
-    color: #22c55e;
-    transform: scale(1.05);
-  }
-
-  /* Tech Stack Highlight - Radium Green */
-  .tech-highlight {
-    @apply transition-all duration-300 cursor-pointer;
-  }
-
-  .tech-highlight:hover {
-    background-color: rgba(34, 197, 94, 0.1);
-    color: #22c55e;
-    transform: scale(1.1);
-    box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
-  }
-
-  /* Feature List Highlight - Radium Green */
-  .feature-highlight {
-    @apply transition-all duration-300 cursor-pointer;
-  }
-
-  .feature-highlight:hover {
-    color: #22c55e;
-    transform: translateX(2px);
-  }
-
-  /* Contact Info Highlight - Radium Green */
-  .contact-highlight {
-    @apply transition-all duration-300 cursor-pointer;
-  }
-
-  .contact-highlight:hover {
-    color: #22c55e;
-    transform: scale(1.05);
-    text-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
-  }
-
-  /* Moving Background Animations */
-  .moving-bg {
-    background: linear-gradient(-45deg, #0f172a, #1e293b, #334155, #475569, #0284c7, #0369a1);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
-  }
-
-  .floating {
-    animation: floating 6s ease-in-out infinite;
-  }
-
-  .floating-delayed {
-    animation: floating 6s ease-in-out infinite 2s;
-  }
-
-  .pulse-slow {
-    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  .bounce-slow {
-    animation: bounce 3s infinite;
-  }
-
-  .rotate-slow {
-    animation: spin 20s linear infinite;
-  }
-
-  .wiggle {
-    animation: wiggle 2s ease-in-out infinite;
-  }
-
-  .slide-in-left {
-    animation: slideInLeft 0.8s ease-out;
-  }
-
-  .slide-in-right {
-    animation: slideInRight 0.8s ease-out;
-  }
-
-  .fade-in-up {
-    animation: fadeInUp 0.8s ease-out;
-  }
-
-  .scale-in {
-    animation: scaleIn 0.6s ease-out;
-  }
-
-  .glow {
-    box-shadow: 0 0 20px rgba(14, 165, 233, 0.5);
-    animation: glow 2s ease-in-out infinite alternate;
-  }
-
-  .particle {
-    position: absolute;
-    background: rgba(14, 165, 233, 0.1);
-    border-radius: 50%;
-    pointer-events: none;
-    animation: particleFloat 8s linear infinite;
-  }
-
-  .gradient-border {
-    position: relative;
-    background: linear-gradient(45deg, #0ea5e9, #0284c7, #0369a1, #075985);
-    background-size: 400% 400%;
-    animation: gradientShift 3s ease infinite;
-    padding: 2px;
-    border-radius: 12px;
-  }
-
-  .gradient-border::before {
-    content: '';
-    position: absolute;
-    inset: 2px;
-    background: #1e293b;
-    border-radius: 10px;
-    z-index: -1;
-  }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
 }
 
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+html {
+  scroll-behavior: smooth;
 }
 
-@keyframes floating {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary), var(--secondary));
+  border-radius: 3px;
 }
 
-@keyframes wiggle {
-  0%, 7% { transform: rotateZ(0); }
-  15% { transform: rotateZ(-15deg); }
-  20% { transform: rotateZ(10deg); }
-  25% { transform: rotateZ(-10deg); }
-  30% { transform: rotateZ(6deg); }
-  35% { transform: rotateZ(-4deg); }
-  40%, 100% { transform: rotateZ(0); }
+/* Titles */
+h1, h2, h3, h4, .font-space-grotesk {
+  font-family: 'Space Grotesk', sans-serif;
 }
 
-@keyframes slideInLeft {
-  0% { transform: translateX(-100px); opacity: 0; }
-  100% { transform: translateX(0); opacity: 1; }
+/* Glassmorphism */
+.glassmorphism {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
-@keyframes slideInRight {
-  0% { transform: translateX(100px); opacity: 0; }
-  100% { transform: translateX(0); opacity: 1; }
+/* Cyber grid background (Red) */
+.cyber-grid {
+  background-image: 
+    linear-gradient(to right, rgba(239, 68, 68, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(239, 68, 68, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
-@keyframes fadeInUp {
-  0% { transform: translateY(30px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+/* Gradient Text (Red to Orange) */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-@keyframes scaleIn {
-  0% { transform: scale(0.8); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+/* Buttons */
+.btn-solid {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.3);
 }
 
-@keyframes glow {
-  0% { box-shadow: 0 0 20px rgba(14, 165, 233, 0.5); }
-  100% { box-shadow: 0 0 30px rgba(14, 165, 233, 0.8), 0 0 40px rgba(14, 165, 233, 0.3); }
+.btn-solid:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.45);
 }
 
-@keyframes particleFloat {
-  0% {
-    transform: translateY(100vh) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100vh) rotate(360deg);
-    opacity: 0;
-  }
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  background: transparent;
+  border: 1.5px solid rgba(239, 68, 68, 0.35);
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
 }
 
-/* New Text Animation Keyframes */
-@keyframes textShake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-2px); }
-  75% { transform: translateX(2px); }
+.btn-outline:hover {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: var(--primary);
 }
 
-@keyframes textBounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-8px); }
-  60% { transform: translateY(-4px); }
+/* Inputs */
+.input-field {
+  width: 100%;
+  background: rgba(3, 7, 18, 0.6);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: white;
+  outline: none;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease;
 }
 
-@keyframes textPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+.input-field:focus {
+  border-color: var(--primary);
 }
 
-/* Scroll-triggered animations */
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease-out;
+/* Tag pill */
+.tag-pill {
+  display: inline-flex;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  background: rgba(239, 68, 68, 0.05);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #f3f4f6;
+  transition: all 0.2s ease;
 }
 
-.animate-on-scroll.animated {
-  opacity: 1;
-  transform: translateY(0);
+.tag-pill:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: scale(1.03);
+}
+
+/* Navbar */
+.nav-link {
+  color: #94a3b8;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: white;
 }
